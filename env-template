@@ -1,0 +1,16 @@
+# Specifies the source code file Flask should run
+FLASK_APP=src/app.py
+
+# "True" if Flask debugging should be enabled, "False" otherwise
+FLASK_DEBUG=False
+
+# Base URL and parameters for the Databases search
+LIBGUIDES_DB_BASE=https://lib.guides.umd.edu/process/az/dbsearch
+SITE_ID=
+SEARCH_ACTION=
+
+# URL to display when no results are returned
+NO_RESULTS_URL=https://lib.guides.umd.edu/az.php
+
+# Base URL for seeing all results
+MODULE_URL=https://lib.guides.umd.edu/az.php?q=
