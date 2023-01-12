@@ -182,24 +182,6 @@ def parse_results(raw_html):
     return result
 
 
-def build_response(json_content):
-    results = []
-    if 'search' in json_content:
-        search = json_content['search']
-        if 'results' in search:
-            for item in search['results']:
-                topics = None
-                if 'topics' in item:
-                    topics = ", ".join(item['topics'])
-                results.append({
-                    'title': item['question'],
-                    'item_format': 'database',
-                    'link': item['url'],
-                    'description': topics,
-                })
-    return results
-
-
 def get_total_records(parsed_content):
     return len(parsed_content)
 

@@ -1,8 +1,8 @@
-# Dockerfile for the generating faq-searcher application Docker image
+# Dockerfile for the generating databases-searcher application Docker image
 #
 # To build:
 #
-# docker build -t docker.lib.umd.edu/faq-searcher:<VERSION> -f Dockerfile .
+# docker build -t docker.lib.umd.edu/databases-searcher:<VERSION> -f Dockerfile .
 #
 # where <VERSION> is the Docker image version to create.
 FROM python:3.10.8-slim
