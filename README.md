@@ -1,6 +1,6 @@
 # databases-searcher
 
-Python 3 Flask application to search the libanswers FAQ searcher.
+Python 3 Flask application to search the databases searcher.
 
 ## Requires
 
@@ -56,6 +56,8 @@ Root endpoint (just returns `{status: ok}` to all requests):
 ```bash
 http://127.0.0.1:5000/search?q=science
 ```
+
+Note that this searcher does not support pagination or offset at this time.
 
 Example:
 
