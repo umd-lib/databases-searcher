@@ -64,19 +64,12 @@ def search():
 
     query = args['q']
 
-    # Limit, offset, and page are not supported in this app
-    # limit = 3
-    # if 'per_page' in args and args['per_page'] != "":
-    #     limit = int(args['per_page'])
+    # per_page in this case is just a limit without any real pagination. Using limit as a param would
+    # be more accurate, but it is also non-standard.
 
-    # offset = 0
-    # page = 1
-    # if 'page' in args and args['page'] != "":
-    #     page = int(args['page'])
-    #     if page > 1:
-    #         offset = limit * (page - 1) + 1
-
-    # logger.debug(f'Pagination debug offset={offset} page={page} limit={limit}')
+    limit = 3
+    if 'per_page' in args and args['per_page'] != "":
+        limit = int(args['per_page'])
 
     params = {
         'site_id': site_id,
@@ -121,10 +114,10 @@ def search():
     json_content = json.loads(response.text)
     rendered_content = None
     if 'data' in json_content:
-        rendered_content = parse_results(json_content['data']['html'])
+        rendered_content = parse_results(json_content['data']['html'], limit)
 
     total_records = 0
-    if rendered_content is not None:
+    if rendered_content is not None and 'data' in json_content:
         total_records = json_content['data']['count']
 
     module_link = module_url + query
@@ -138,7 +131,7 @@ def search():
         'module_link': module_link,
     }
 
-    if total_records != 0:
+    if total_records > 0:
         api_response['results'] = rendered_content
     else:
         api_response['error'] = build_no_results()
@@ -153,7 +146,7 @@ def build_no_results():
     }
 
 
-def parse_results(raw_html):
+def parse_results(raw_html, limit):
     result = []
     soup = BeautifulSoup(raw_html, 'html.parser')
 
@@ -176,7 +169,7 @@ def parse_results(raw_html):
             entry['item_format'] = 'database'
             i = i + 1
             result.append(entry)
-        if i >= 3:
+        if i >= limit:
             break
 
     return result
