@@ -91,6 +91,7 @@ def search():
 
         return {
             'endpoint': 'databases',
+            'results': [],
             'error': {
                 'msg': f'Search error',
             },
@@ -101,6 +102,7 @@ def search():
 
         return {
             'endpoint': 'databases',
+            'results': [],
             'error': {
                 'msg': f'Received {response.status_code} for q={query}',
             },
