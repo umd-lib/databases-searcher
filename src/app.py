@@ -80,8 +80,6 @@ def search():
 
     full_query_url = env['LIBGUIDES_DB_BASE']
 
-    logger.error(full_query_url)
-
     search_url = furl.furl(full_query_url)
 
     # Execute Databases search
